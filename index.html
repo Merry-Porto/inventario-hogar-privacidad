@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Política de privacidad de Inventario Hogar</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --rosa: #F511CB;
+    --morado: #6425A7;
+    --morado-oscuro: #3F1470;
+    --fondo: #F7F2FC;
+    --tarjeta: #FFFFFF;
+    --texto: #26202E;
+    --suave: #5F566B;
+    --titulo: #6425A7;
+    --borde: #E6DAF3;
+    --chip: #F3E8FB;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --fondo: #140E1C;
+      --tarjeta: #1E1629;
+      --texto: #EDE7F4;
+      --suave: #B3A7C2;
+      --titulo: #D9A9F5;
+      --borde: #34274A;
+      --chip: #2A1D3C;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--fondo); color: var(--texto);
+    font: 17px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  }
+  header {
+    position: relative; overflow: hidden; color: #fff; text-align: center;
+    padding: 56px 20px 84px;
+    background: linear-gradient(135deg, var(--morado-oscuro) 0%, var(--morado) 55%, var(--rosa) 130%);
+  }
+  header::before, header::after {
+    content: ""; position: absolute; border-radius: 50%; background: rgba(255,255,255,.08);
+  }
+  header::before { width: 340px; height: 340px; right: -90px; top: -120px; }
+  header::after { width: 260px; height: 260px; left: -80px; bottom: -130px; background: rgba(245,17,203,.22); }
+  .marca {
+    position: relative; display: inline-flex; align-items: center; justify-content: center;
+    width: 72px; height: 72px; border-radius: 22px; margin-bottom: 14px;
+    background: linear-gradient(135deg, var(--rosa), var(--morado)); box-shadow: 0 10px 28px rgba(0,0,0,.28);
+  }
+  .marca svg { width: 40px; height: 40px; fill: #fff; }
+  header h1 { position: relative; margin: 0; font-size: 1.9rem; line-height: 1.2; letter-spacing: -.01em; }
+  header p { position: relative; margin: 8px 0 0; opacity: .92; }
+  .fecha {
+    position: relative; display: inline-block; margin-top: 16px; padding: 5px 14px;
+    border-radius: 999px; background: rgba(255,255,255,.16); font-size: .9rem;
+  }
+  main { max-width: 760px; margin: -48px auto 0; padding: 0 16px 56px; position: relative; }
+  .tarjeta {
+    background: var(--tarjeta); border: 1px solid var(--borde); border-radius: 20px;
+    padding: 22px 22px; margin: 0 0 16px; box-shadow: 0 6px 24px rgba(100,37,167,.08);
+  }
+  .tarjeta h2 {
+    margin: 0 0 8px; font-size: 1.15rem; color: var(--titulo);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .tarjeta h2::before {
+    content: ""; flex: none; width: 6px; height: 22px; border-radius: 4px;
+    background: linear-gradient(180deg, var(--rosa), var(--morado));
+  }
+  .tarjeta p { margin: 0 0 .7rem; }
+  .tarjeta p:last-child, .tarjeta ul:last-child { margin-bottom: 0; }
+  ul { margin: 0 0 .7rem; padding-left: 1.25rem; }
+  li { margin: .35rem 0; }
+  li::marker { color: var(--rosa); }
+  .resumen { border: none; color: #fff; background: linear-gradient(135deg, var(--morado) 0%, #8A2BB8 60%, var(--rosa) 130%); }
+  .resumen h2 { color: #fff; }
+  .resumen h2::before { background: #fff; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .chip { padding: 6px 14px; border-radius: 999px; background: rgba(255,255,255,.18); font-weight: 600; font-size: .92rem; }
+  a { color: var(--morado); font-weight: 600; text-decoration-color: var(--rosa); text-underline-offset: 3px; }
+  @media (prefers-color-scheme: dark) { a { color: #E3B6F7; } }
+  footer { text-align: center; color: var(--suave); font-size: .9rem; padding: 8px 16px 40px; }
+  footer strong { color: var(--titulo); }
+  @media (max-width: 480px) { header h1 { font-size: 1.55rem; } .tarjeta { padding: 18px 16px; border-radius: 16px; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="marca" aria-hidden="true">
+    <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+  </div>
+  <h1>Política de privacidad</h1>
+  <p>Inventario Hogar</p>
+  <span class="fecha">Última actualización: 2 de octubre de 2026</span>
+</header>
+
+<main>
+  <section class="tarjeta resumen">
+    <h2>En pocas palabras</h2>
+    <p>Inventario Hogar guarda todo lo que registras únicamente en tu teléfono. No envía tu información a ningún servidor, no muestra anuncios y no te sigue.</p>
+    <div class="chips">
+      <span class="chip">Solo en tu teléfono</span>
+      <span class="chip">Sin cuentas</span>
+      <span class="chip">Sin anuncios</span>
+      <span class="chip">Sin permisos</span>
+    </div>
+  </section>
+
+  <section class="tarjeta">
+    <h2>Quién es responsable</h2>
+    <p>Jorge Luis Solis Gonzalez<br>
+    Contacto: <a href="mailto:merryportox@gmail.com">merryportox@gmail.com</a></p>
+  </section>
+
+  <section class="tarjeta">
+    <h2>Qué hace la app</h2>
+    <p>Inventario Hogar te ayuda a registrar dónde está cada cosa de tu casa: habitaciones, muebles, objetos, fotos con pines, cantidades y fechas de caducidad.</p>
+  </section>
+
+  <section class="tarjeta">
+    <h2>Qué información maneja</h2>
+    <p>La app maneja la información que tú escribes y las fotos que tú tomas o eliges:</p>
+    <ul>
+      <li>Nombres de habitaciones, muebles y objetos, descripciones, etiquetas, cantidades y fechas de caducidad.</li>
+      <li>Las fotos de tu casa que tomas con la cámara o eliges de tu galería, y la posición de los pines sobre ellas.</li>
+      <li>La habitación donde dices estar (opción «Estoy aquí») y tus preferencias, como los días de aviso de caducidad.</li>
+    </ul>
+  </section>
+
+  <section class="tarjeta">
+    <h2>Dónde se guarda</h2>
+    <p>En esta versión, <strong>toda esta información se guarda únicamente en tu teléfono</strong>. No se envía a ningún servidor, no se comparte con nadie y no se usa para publicidad ni para análisis. No hay cuentas ni registro.</p>
+    <ul>
+      <li>Las fotos que eliges de tu galería se copian, reducidas de tamaño, a la memoria privada de la app. La app no cambia ni borra las originales.</li>
+      <li>La app <strong>no pide permisos</strong> del teléfono: para la cámara usa la aplicación de cámara del sistema y para las fotos usa el selector del sistema, que solo entrega las que tú eliges.</li>
+      <li>El respaldo automático en la nube de Android está desactivado para esta app, para que las fotos de tu casa no salgan de tu teléfono sin que tú lo decidas.</li>
+    </ul>
+  </section>
+
+  <section class="tarjeta">
+    <h2>Cuánto tiempo se conserva y cómo se borra</h2>
+    <p>La información queda en tu teléfono hasta que la elimines. Lo que eliminas dentro de la app se guarda 30 días en la papelera y después se borra definitivamente; también puedes vaciar la papelera cuando quieras. Al <strong>desinstalar la app</strong>, se borra toda su información del teléfono.</p>
+  </section>
+
+  <section class="tarjeta">
+    <h2>Niños</h2>
+    <p>La app no está dirigida a menores de edad y no recopila datos de nadie.</p>
+  </section>
+
+  <section class="tarjeta">
+    <h2>Cambios a esta política</h2>
+    <p>Si en el futuro la app cambia la forma en que maneja tu información, por ejemplo al permitir cuentas o compartir la casa con tu familia, se actualizará esta política y se te avisará dentro de la app antes de aplicar el cambio.</p>
+  </section>
+
+  <section class="tarjeta">
+    <h2>Contacto</h2>
+    <p>Para dudas o solicitudes sobre tu información, escribe a <a href="mailto:merryportox@gmail.com">merryportox@gmail.com</a>.</p>
+  </section>
+</main>
+
+<footer>
+  <strong>Inventario Hogar</strong> · Jorge Luis Solis Gonzalez
+</footer>
+</body>
+</html>
