@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="referrer" content="no-referrer">
+<title>Nueva contraseña · Dónde está</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --rosa: #F511CB;
+    --morado: #6425A7;
+    --morado-oscuro: #3F1470;
+    --fondo: #F7F2FC;
+    --tarjeta: #FFFFFF;
+    --texto: #26202E;
+    --suave: #5F566B;
+    --titulo: #6425A7;
+    --borde: #E6DAF3;
+    --error: #B3261E;
+    --ok: #1B7F4B;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --fondo: #140E1C;
+      --tarjeta: #1E1629;
+      --texto: #EDE7F4;
+      --suave: #B3A7C2;
+      --titulo: #D9A9F5;
+      --borde: #34274A;
+      --error: #F2B8B5;
+      --ok: #7DD8A6;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--fondo); color: var(--texto);
+    font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  }
+  header {
+    position: relative; overflow: hidden; color: #fff; text-align: center;
+    padding: 48px 20px 76px;
+    background: linear-gradient(135deg, var(--morado-oscuro) 0%, var(--morado) 55%, var(--rosa) 130%);
+  }
+  .marca {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 64px; height: 64px; border-radius: 20px; margin-bottom: 12px;
+    background: linear-gradient(135deg, var(--rosa), var(--morado)); box-shadow: 0 10px 28px rgba(0,0,0,.28);
+  }
+  .marca svg { width: 36px; height: 36px; fill: #fff; }
+  header h1 { margin: 0; font-size: 1.7rem; line-height: 1.2; }
+  header p { margin: 6px 0 0; opacity: .92; }
+  main { max-width: 480px; margin: -44px auto 0; padding: 0 16px 48px; position: relative; }
+  .tarjeta {
+    background: var(--tarjeta); border: 1px solid var(--borde); border-radius: 20px;
+    padding: 24px 22px; box-shadow: 0 6px 24px rgba(100,37,167,.08);
+  }
+  .tarjeta h2 { margin: 0 0 8px; font-size: 1.15rem; color: var(--titulo); }
+  .tarjeta p { margin: 0 0 .8rem; }
+  label { display: block; font-weight: 600; margin: 14px 0 6px; }
+  .campo { display: flex; gap: 8px; }
+  input {
+    flex: 1; min-width: 0; font: inherit; padding: 12px 14px; border-radius: 12px;
+    border: 1px solid var(--borde); background: var(--fondo); color: var(--texto);
+  }
+  input:focus { outline: 2px solid var(--morado); outline-offset: 1px; }
+  .ver {
+    font: inherit; font-size: .9rem; padding: 0 14px; border-radius: 12px; cursor: pointer;
+    border: 1px solid var(--borde); background: transparent; color: var(--titulo);
+  }
+  .boton {
+    display: block; width: 100%; margin-top: 20px; padding: 14px 20px; border: 0; border-radius: 999px;
+    font: inherit; font-weight: 700; color: #fff; cursor: pointer;
+    background: linear-gradient(135deg, var(--morado), var(--rosa));
+  }
+  .boton:disabled { opacity: .6; cursor: default; }
+  .nota { color: var(--suave); font-size: .9rem; margin-top: 10px; }
+  .error { color: var(--error); font-weight: 600; margin-top: 12px; }
+  .ok { color: var(--ok); }
+  [hidden] { display: none !important; }
+  footer { text-align: center; color: var(--suave); font-size: .9rem; padding: 0 16px 40px; }
+</style>
+</head>
+<body>
+<header>
+  <div class="marca" aria-hidden="true">
+    <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+  </div>
+  <h1>Nueva contraseña</h1>
+  <p>Dónde está</p>
+</header>
+
+<main>
+  <!-- Escribir la contraseña nueva -->
+  <section class="tarjeta" id="formulario" hidden>
+    <h2>Escribe tu contraseña nueva</h2>
+    <p>Usa al menos 6 caracteres y que no la uses en otras cuentas.</p>
+    <form id="form" novalidate>
+      <label for="pass1">Contraseña nueva</label>
+      <div class="campo">
+        <input id="pass1" type="password" autocomplete="new-password" minlength="6" required>
+        <button class="ver" type="button" data-para="pass1">Ver</button>
+      </div>
+      <label for="pass2">Escríbela otra vez</label>
+      <div class="campo">
+        <input id="pass2" type="password" autocomplete="new-password" minlength="6" required>
+        <button class="ver" type="button" data-para="pass2">Ver</button>
+      </div>
+      <p class="error" id="error" role="alert" hidden></p>
+      <button class="boton" id="guardar" type="submit">Guardar contraseña</button>
+    </form>
+  </section>
+
+  <!-- Listo -->
+  <section class="tarjeta" id="listo" hidden>
+    <h2 class="ok">Listo, tu contraseña cambió</h2>
+    <p>Abre <strong>Dónde está</strong> en tu teléfono y entra con tu correo y tu contraseña nueva.</p>
+    <p class="nota">Ya puedes cerrar esta página.</p>
+  </section>
+
+  <!-- El enlace no sirve -->
+  <section class="tarjeta" id="sin-enlace" hidden>
+    <h2>Este enlace ya no sirve</h2>
+    <p id="motivo">El enlace venció o ya se usó.</p>
+    <p>Pide otro desde la app: <strong>⋮ → Configuración → Cuenta y nube → ¿Olvidaste tu contraseña?</strong></p>
+    <p class="nota">Los enlaces sirven una sola vez y por poco tiempo.</p>
+  </section>
+</main>
+
+<footer><strong>Dónde está</strong> · Jorge Luis Solis Gonzalez</footer>
+
+<script>
+  // Proyecto de Supabase de la app. La llave publicable es pública a propósito (va dentro de la app):
+  // lo que cada quien puede hacer lo deciden las reglas del servidor. Nunca poner aquí la llave secreta.
+  var SUPABASE_URL = "https://zckjynfxulmxbbewabpu.supabase.co";
+  var SUPABASE_KEY = "sb_publishable_NR2vLa0GoiOTtbX_u_vPtg_-C-JcfSx";
+
+  // Supabase regresa aquí con el pase de un solo uso después del «#»: #access_token=…&type=recovery
+  // o, si el enlace ya no sirve, #error=…&error_code=otp_expired&error_description=…
+  var datos = new URLSearchParams(location.hash.slice(1));
+  // Se quita de la barra de direcciones para que no quede en el historial ni se comparta por error.
+  try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {}
+
+  var token = datos.get("access_token");
+  var mostrar = function (id) {
+    ["formulario", "listo", "sin-enlace"].forEach(function (s) { document.getElementById(s).hidden = s !== id; });
+  };
+
+  if (!token || datos.get("type") !== "recovery") {
+    if (datos.get("error_code") && datos.get("error_code") !== "otp_expired") {
+      document.getElementById("motivo").textContent = "No se pudo abrir el enlace.";
+    }
+    mostrar("sin-enlace");
+  } else {
+    mostrar("formulario");
+  }
+
+  document.querySelectorAll(".ver").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var campo = document.getElementById(b.dataset.para);
+      var oculto = campo.type === "password";
+      campo.type = oculto ? "text" : "password";
+      b.textContent = oculto ? "Ocultar" : "Ver";
+    });
+  });
+
+  var avisar = function (texto) {
+    var e = document.getElementById("error");
+    e.textContent = texto;
+    e.hidden = !texto;
+  };
+
+  var mensaje = function (status, json) {
+    var code = (json && (json.error_code || json.code)) || "";
+    if (code === "same_password") return "La contraseña nueva debe ser distinta a la anterior.";
+    if (code === "weak_password") return "La contraseña es muy débil: usa al menos 6 caracteres.";
+    if (status === 401 || status === 403 || code === "session_not_found" || code === "bad_jwt")
+      return "El enlace venció. Pide otro desde la app.";
+    if (status === 429) return "Demasiados intentos seguidos. Espera un momento e inténtalo de nuevo.";
+    return "No se pudo guardar. Inténtalo de nuevo en un momento.";
+  };
+
+  document.getElementById("form").addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    var p1 = document.getElementById("pass1").value;
+    var p2 = document.getElementById("pass2").value;
+    if (p1.length < 6) return avisar("La contraseña debe tener al menos 6 caracteres.");
+    if (p1 !== p2) return avisar("Las dos contraseñas no son iguales.");
+    avisar("");
+    var boton = document.getElementById("guardar");
+    boton.disabled = true;
+    boton.textContent = "Guardando…";
+    var cabeceras = { "apikey": SUPABASE_KEY, "Authorization": "Bearer " + token, "Content-Type": "application/json" };
+    fetch(SUPABASE_URL + "/auth/v1/user", { method: "PUT", headers: cabeceras, body: JSON.stringify({ password: p1 }) })
+      .then(function (r) {
+        return r.json().catch(function () { return null; }).then(function (json) {
+          if (!r.ok) throw new Error(mensaje(r.status, json));
+          // La sesión de esta página ya no hace falta: se cierra (la de la app no se toca).
+          fetch(SUPABASE_URL + "/auth/v1/logout?scope=local", { method: "POST", headers: cabeceras }).catch(function () {});
+          token = null;
+          mostrar("listo");
+        });
+      })
+      .catch(function (e) {
+        avisar(e.message === "Failed to fetch" ? "No hay conexión. Revisa tu internet e inténtalo de nuevo." : e.message);
+        boton.disabled = false;
+        boton.textContent = "Guardar contraseña";
+      });
+  });
+</script>
+</body>
+</html>
