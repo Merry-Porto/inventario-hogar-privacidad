@@ -75,6 +75,7 @@
     background: linear-gradient(135deg, var(--morado), var(--rosa));
   }
   .boton:disabled { opacity: .6; cursor: default; }
+  a.boton { text-align: center; text-decoration: none; margin: 16px 0 4px; }
   .nota { color: var(--suave); font-size: .9rem; margin-top: 10px; }
   .error { color: var(--error); font-weight: 600; margin-top: 12px; }
   .ok { color: var(--ok); }
@@ -115,8 +116,15 @@
   <!-- Listo -->
   <section class="tarjeta" id="listo" hidden>
     <h2 class="ok">Listo, tu contraseña cambió</h2>
-    <p>Abre <strong>Dónde está</strong> en tu teléfono y entra con tu correo y tu contraseña nueva.</p>
-    <p class="nota">Ya puedes cerrar esta página.</p>
+    <div id="en-telefono" hidden>
+      <p>Toca el botón para volver a <strong>Dónde está</strong> con tu sesión ya iniciada.</p>
+      <a class="boton" id="abrir" href="#">Abrir Dónde está</a>
+      <p class="nota">Si no se abre, entra en la app con tu correo y tu contraseña nueva.</p>
+    </div>
+    <div id="en-compu">
+      <p>Abre <strong>Dónde está</strong> en tu teléfono y entra con tu correo y tu contraseña nueva.</p>
+      <p class="nota">Ya puedes cerrar esta página.</p>
+    </div>
   </section>
 
   <!-- El enlace no sirve -->
@@ -143,6 +151,11 @@
   try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {}
 
   var token = datos.get("access_token");
+  var renovar = datos.get("refresh_token");
+  // Qué app abrir: solo una de estas dos, para que la sesión nunca llegue a otra app.
+  var PAQUETES = { "": "com.merryporto.inventariohogar", "prueba": "com.merryporto.inventariohogar.prueba" };
+  var paquete = PAQUETES[new URLSearchParams(location.search).get("app") || ""];
+  var android = /Android/i.test(navigator.userAgent) && paquete && renovar;
   var mostrar = function (id) {
     ["formulario", "listo", "sin-enlace"].forEach(function (s) { document.getElementById(s).hidden = s !== id; });
   };
@@ -196,8 +209,17 @@
       .then(function (r) {
         return r.json().catch(function () { return null; }).then(function (json) {
           if (!r.ok) throw new Error(mensaje(r.status, json));
-          // La sesión de esta página ya no hace falta: se cierra (la de la app no se toca).
-          fetch(SUPABASE_URL + "/auth/v1/logout?scope=local", { method: "POST", headers: cabeceras }).catch(function () {});
+          if (android) {
+            // En el teléfono, la sesión pasa a la app (solo a ese paquete) para entrar sin escribir la contraseña.
+            var play = "https://play.google.com/store/apps/details?id=" + paquete;
+            document.getElementById("abrir").href = "intent://entrar?rt=" + encodeURIComponent(renovar) +
+              "#Intent;scheme=dondeesta;package=" + paquete + ";S.browser_fallback_url=" + encodeURIComponent(play) + ";end";
+            document.getElementById("en-telefono").hidden = false;
+            document.getElementById("en-compu").hidden = true;
+          } else {
+            // En la computadora la sesión de esta página ya no hace falta: se cierra (la de la app no se toca).
+            fetch(SUPABASE_URL + "/auth/v1/logout?scope=local", { method: "POST", headers: cabeceras }).catch(function () {});
+          }
           token = null;
           mostrar("listo");
         });
