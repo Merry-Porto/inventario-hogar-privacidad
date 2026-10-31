@@ -84,6 +84,13 @@
   footer { text-align: center; color: var(--suave); font-size: .9rem; padding: 8px 16px 40px; }
   footer strong { color: var(--titulo); }
   @media (max-width: 480px) { header h1 { font-size: 1.55rem; } .tarjeta { padding: 18px 16px; border-radius: 16px; } }
+  .botones { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+  .boton {
+    display: inline-block; padding: 12px 20px; border-radius: 999px; text-decoration: none; font-weight: 700;
+    color: #fff; background: linear-gradient(135deg, var(--morado), var(--rosa));
+  }
+  .boton.claro { color: var(--morado); background: var(--chip); }
+  @media (prefers-color-scheme: dark) { .boton.claro { color: #E3B6F7; } }
 </style>
 </head>
 <body>
@@ -93,72 +100,105 @@
   </div>
   <h1>Política de privacidad</h1>
   <p>Dónde está</p>
-  <span class="fecha">Última actualización: 7 de octubre de 2026</span>
+  <span class="fecha">Última actualización: 29 de octubre de 2026</span>
 </header>
 
 <main>
   <section class="tarjeta resumen">
     <h2>En pocas palabras</h2>
-    <p>Dónde está guarda todo lo que registras únicamente en tu teléfono. No envía tu información a ningún servidor, no muestra anuncios y no te sigue.</p>
+    <p>Dónde está funciona sin cuenta: así, todo lo que registras se queda solo en tu teléfono. Si tú decides crear una cuenta, tu inventario también se guarda en la nube para no perderlo y, si quieres, compartirlo con tu familia. No mostramos anuncios, no vendemos tus datos y no te seguimos.</p>
     <div class="chips">
-      <span class="chip">Solo en tu teléfono</span>
-      <span class="chip">Sin cuentas</span>
+      <span class="chip">Funciona sin cuenta</span>
+      <span class="chip">Nube solo si tú quieres</span>
       <span class="chip">Sin anuncios</span>
-      <span class="chip">Sin permisos</span>
+      <span class="chip">No vendemos tus datos</span>
     </div>
   </section>
 
   <section class="tarjeta">
     <h2>Quién es responsable</h2>
-    <p>Jorge Luis Solis Gonzalez<br>
+    <p>Jorge Luis Solis Gonzalez, responsable de tus datos personales conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (México).<br>
     Contacto: <a href="mailto:merryportox@gmail.com">merryportox@gmail.com</a></p>
   </section>
 
   <section class="tarjeta">
     <h2>Qué hace la app</h2>
-    <p>Dónde está te ayuda a registrar dónde está cada cosa de tu casa: habitaciones, muebles, objetos, fotos con pines, cantidades y fechas de caducidad.</p>
+    <p>Dónde está te ayuda a registrar dónde está cada cosa de tu casa: habitaciones, muebles, objetos, fotos con pines, cantidades y fechas de caducidad. Si creas una cuenta, puedes subir tu inventario a la nube y compartir tu casa con tu familia.</p>
   </section>
 
   <section class="tarjeta">
-    <h2>Qué información maneja</h2>
-    <p>La app maneja la información que tú escribes y las fotos que tú tomas o eliges:</p>
+    <h2>Sin cuenta: todo en tu teléfono</h2>
+    <p>Si no creas una cuenta, <strong>todo se guarda únicamente en tu teléfono</strong>: no se envía a ningún servidor ni se comparte con nadie. La app maneja lo que tú escribes y las fotos que tú tomas o eliges:</p>
     <ul>
-      <li>Nombres de habitaciones, muebles y objetos, descripciones, etiquetas, cantidades y fechas de caducidad.</li>
-      <li>Las fotos de tu casa que tomas con la cámara o eliges de tu galería, y la posición de los pines sobre ellas.</li>
-      <li>La habitación donde dices estar (opción «Estoy aquí») y tus preferencias, como los días de aviso de caducidad.</li>
+      <li>Nombres de habitaciones, muebles y objetos, descripciones, etiquetas, cantidades, fechas de caducidad e historial de lo que entra y sale.</li>
+      <li>Las fotos de tu casa y la posición de los pines sobre ellas. Las fotos que eliges de tu galería se copian, reducidas, a la memoria privada de la app; las originales no se cambian ni se borran.</li>
+      <li>Tus preferencias, como los días de aviso de caducidad o los colores de la app.</li>
+    </ul>
+    <p>La app no te pide permisos: para la cámara usa la aplicación de cámara del sistema y para las fotos usa el selector del sistema, que solo entrega las que tú eliges. Solo usa internet para la nube y las compras, si las usas. El respaldo automático en la nube de Android está desactivado para esta app.</p>
+  </section>
+
+  <section class="tarjeta">
+    <h2>Con cuenta: lo que se guarda en la nube</h2>
+    <p>Crear una cuenta es opcional. Si la creas, se guarda:</p>
+    <ul>
+      <li><strong>Tu cuenta:</strong> correo, el nombre que escribes y tu contraseña. La contraseña se guarda cifrada: nadie, ni nosotros, puede leerla. Si entras con Google, Google nos da solo tu correo y tu nombre; tu contraseña de Google nunca pasa por la app.</li>
+      <li><strong>Tu casa:</strong> lo que subes del teléfono (lugares, objetos, cantidades, historial, fotos y pines), quién vive en la casa, el rol de cada persona y quién hizo cada cambio.</li>
+      <li><strong>Datos técnicos:</strong> el servicio de nube registra por seguridad datos de cada conexión, como la dirección IP y la hora, y los borra después de un tiempo.</li>
+    </ul>
+    <p>Todo se guarda en <strong>Supabase</strong>, el servicio de nube de la app, en servidores ubicados en América. Supabase solo almacena los datos por encargo nuestro; no los usa para nada más. La conexión siempre va cifrada (HTTPS) y las fotos están en un espacio privado.</p>
+  </section>
+
+  <section class="tarjeta">
+    <h2>Tu familia: quién ve qué</h2>
+    <ul>
+      <li>Cada persona solo ve las casas a las que pertenece. Nadie más puede ver tu casa.</li>
+      <li>Si invitas a alguien a tu casa, esa persona ve sus fotos, su inventario y el historial, incluido quién hizo cada cambio.</li>
+      <li>Los roles: quien administra puede invitar y quitar personas; un miembro puede ver y cambiar; un lector solo puede ver.</li>
+      <li>Si sales de una casa, lo que aportaste se queda para la familia.</li>
     </ul>
   </section>
 
   <section class="tarjeta">
-    <h2>Dónde se guarda</h2>
-    <p>En esta versión, <strong>toda esta información se guarda únicamente en tu teléfono</strong>. No se envía a ningún servidor, no se comparte con nadie y no se usa para publicidad ni para análisis. No hay cuentas ni registro.</p>
-    <ul>
-      <li>Las fotos que eliges de tu galería se copian, reducidas de tamaño, a la memoria privada de la app. La app no cambia ni borra las originales.</li>
-      <li>La app <strong>no pide permisos</strong> del teléfono: para la cámara usa la aplicación de cámara del sistema y para las fotos usa el selector del sistema, que solo entrega las que tú eliges.</li>
-      <li>El respaldo automático en la nube de Android está desactivado para esta app, para que las fotos de tu casa no salgan de tu teléfono sin que tú lo decidas.</li>
-      <li>La app no se conecta con servicios de inteligencia artificial ni envía tus fotos a ninguno por su cuenta. La opción «Agregar desde una foto» abre el menú de compartir del teléfono para que, solo si tú lo decides, mandes una foto y un mensaje a la aplicación de IA que elijas. A partir de ese momento esa aplicación se rige por sus propias condiciones y su política de privacidad, y Dónde está no recibe ni controla lo que haga con la foto.</li>
-      <li><strong>Exportar e importar:</strong> si usas «Exportar inventario», la app crea un archivo .zip con tus datos y fotos en el lugar que tú elijas. La app no lo envía a ningún sitio; quien lo reciba podrá ver su contenido, así que guárdalo o compártelo con cuidado. «Importar inventario» solo lee el archivo que tú selecciones.</li>
-    </ul>
+    <h2>Planes de pago</h2>
+    <p>El plan Familia se paga con <strong>Google Play</strong>: tus datos de pago los maneja Google y nosotros nunca los vemos. Para confirmar cada compra usamos <strong>RevenueCat</strong>, que solo recibe un identificador técnico de tu casa y el estado de la suscripción (activa, renovada o vencida), y conserva ese historial según sus propias reglas. Para cancelar, ve a Google Play → Pagos y suscripciones.</p>
+  </section>
+
+  <section class="tarjeta">
+    <h2>Inteligencia artificial</h2>
+    <p>La app no se conecta con servicios de inteligencia artificial ni les envía tus fotos por su cuenta. La opción «Agregar desde una foto» abre el menú de compartir del teléfono para que, solo si tú lo decides, mandes una foto a la aplicación de IA que elijas. Esa aplicación se rige por sus propias condiciones y Dónde está no controla lo que haga con la foto.</p>
+  </section>
+
+  <section class="tarjeta">
+    <h2>Exportar e importar</h2>
+    <p>«Exportar inventario» crea un archivo .zip con tus datos y fotos en el lugar que tú elijas; la app no lo envía a ningún sitio. Quien lo reciba podrá ver su contenido, así que guárdalo o compártelo con cuidado. «Importar inventario» solo lee el archivo que tú selecciones.</p>
   </section>
 
   <section class="tarjeta">
     <h2>Cuánto tiempo se conserva y cómo se borra</h2>
-    <p>La información queda en tu teléfono hasta que la elimines. Lo que eliminas dentro de la app se guarda 30 días en la papelera y después se borra definitivamente; también puedes vaciar la papelera cuando quieras. Al <strong>desinstalar la app</strong>, se borra toda su información del teléfono.</p>
+    <ul>
+      <li><strong>En tu teléfono:</strong> hasta que lo elimines. Lo que eliminas se guarda 30 días en la papelera y después se borra solo. Al desinstalar la app se borra todo del teléfono. Al cerrar sesión puedes elegir quitar tu inventario del teléfono; sigue guardado en la nube.</li>
+      <li><strong>En la nube:</strong> mientras tengas tu cuenta.</li>
+      <li><strong>Al borrar tu cuenta</strong> (en la app: Configuración → Cuenta y nube → Tu cuenta → Borrar mi cuenta): la cuenta queda bloqueada 15 días, por si cambias de opinión, y después se borran tu cuenta y las casas donde vives solo, con sus fotos. En las casas compartidas sales de la casa y tus cambios se quedan para tu familia, sin tu nombre. Lo de tu teléfono no se toca. <a href="borrar-cuenta.html">Cómo borrar tu cuenta, también sin la app</a>.</li>
+    </ul>
+  </section>
+
+  <section class="tarjeta">
+    <h2>Tus derechos</h2>
+    <p>Puedes <strong>acceder</strong> a tus datos, <strong>corregirlos</strong>, <strong>cancelarlos</strong> u <strong>oponerte</strong> a su uso (derechos ARCO), y retirar tu consentimiento. La mayoría lo puedes hacer tú mismo en la app; para todo lo demás, escríbenos. Te respondemos en un máximo de 7 días.</p>
+    <div class="botones">
+      <a class="boton" href="mailto:merryportox@gmail.com?subject=Mis%20datos%20en%20D%C3%B3nde%20est%C3%A1&amp;body=Hola%2C%20quiero%20(ver%20%2F%20corregir%20%2F%20borrar)%20mis%20datos%20de%20D%C3%B3nde%20est%C3%A1.%0A%0ACorreo%20de%20la%20cuenta%3A%20">Pedir algo sobre mis datos</a>
+      <a class="boton claro" href="mailto:merryportox@gmail.com?subject=Duda%20de%20privacidad%20de%20D%C3%B3nde%20est%C3%A1">Tengo una duda</a>
+    </div>
   </section>
 
   <section class="tarjeta">
     <h2>Niños</h2>
-    <p>La app no está dirigida a menores de edad y no recopila datos de nadie.</p>
+    <p>La app no está dirigida a menores de edad y no recopila a propósito datos de menores.</p>
   </section>
 
   <section class="tarjeta">
     <h2>Cambios a esta política</h2>
-    <p>Si en el futuro la app cambia la forma en que maneja tu información, por ejemplo al permitir cuentas o compartir la casa con tu familia, se actualizará esta política y se te avisará dentro de la app antes de aplicar el cambio.</p>
-  </section>
-
-  <section class="tarjeta">
-    <h2>Contacto</h2>
-    <p>Para dudas o solicitudes sobre tu información, escribe a <a href="mailto:merryportox@gmail.com">merryportox@gmail.com</a>.</p>
+    <p>Si cambia la forma en que la app maneja tu información, actualizaremos esta política, cambiaremos la fecha de arriba y te avisaremos dentro de la app antes de aplicar el cambio.</p>
   </section>
 </main>
 
