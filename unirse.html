@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="referrer" content="no-referrer">
+<title>Unirme a una casa · Dónde está</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --rosa: #F511CB;
+    --morado: #6425A7;
+    --morado-oscuro: #3F1470;
+    --fondo: #F7F2FC;
+    --tarjeta: #FFFFFF;
+    --texto: #26202E;
+    --suave: #5F566B;
+    --titulo: #6425A7;
+    --borde: #E6DAF3;
+    --error: #B3261E;
+    --ok: #1B7F4B;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --fondo: #140E1C;
+      --tarjeta: #1E1629;
+      --texto: #EDE7F4;
+      --suave: #B3A7C2;
+      --titulo: #D9A9F5;
+      --borde: #34274A;
+      --error: #F2B8B5;
+      --ok: #7DD8A6;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--fondo); color: var(--texto);
+    font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  }
+  header {
+    position: relative; overflow: hidden; color: #fff; text-align: center;
+    padding: 48px 20px 76px;
+    background: linear-gradient(135deg, var(--morado-oscuro) 0%, var(--morado) 55%, var(--rosa) 130%);
+  }
+  .marca {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 64px; height: 64px; border-radius: 20px; margin-bottom: 12px;
+    background: linear-gradient(135deg, var(--rosa), var(--morado)); box-shadow: 0 10px 28px rgba(0,0,0,.28);
+  }
+  .marca svg { width: 36px; height: 36px; fill: #fff; }
+  header h1 { margin: 0; font-size: 1.7rem; line-height: 1.2; }
+  header p { margin: 6px 0 0; opacity: .92; }
+  main { max-width: 480px; margin: -44px auto 0; padding: 0 16px 48px; position: relative; }
+  .tarjeta {
+    background: var(--tarjeta); border: 1px solid var(--borde); border-radius: 20px;
+    padding: 24px 22px; box-shadow: 0 6px 24px rgba(100,37,167,.08);
+  }
+  .tarjeta h2 { margin: 0 0 8px; font-size: 1.15rem; color: var(--titulo); }
+  .tarjeta p { margin: 0 0 .8rem; }
+  label { display: block; font-weight: 600; margin: 14px 0 6px; }
+  .campo { display: flex; gap: 8px; }
+  input {
+    flex: 1; min-width: 0; font: inherit; padding: 12px 14px; border-radius: 12px;
+    border: 1px solid var(--borde); background: var(--fondo); color: var(--texto);
+  }
+  input:focus { outline: 2px solid var(--morado); outline-offset: 1px; }
+  .ver {
+    font: inherit; font-size: .9rem; padding: 0 14px; border-radius: 12px; cursor: pointer;
+    border: 1px solid var(--borde); background: transparent; color: var(--titulo);
+  }
+  .boton {
+    display: block; width: 100%; margin-top: 20px; padding: 14px 20px; border: 0; border-radius: 999px;
+    font: inherit; font-weight: 700; color: #fff; cursor: pointer;
+    background: linear-gradient(135deg, var(--morado), var(--rosa));
+  }
+  .boton:disabled { opacity: .6; cursor: default; }
+  a.boton { text-align: center; text-decoration: none; margin: 16px 0 4px; }
+  .nota { color: var(--suave); font-size: .9rem; margin-top: 10px; }
+  .error { color: var(--error); font-weight: 600; margin-top: 12px; }
+  .ok { color: var(--ok); }
+  [hidden] { display: none !important; }
+  footer { text-align: center; color: var(--suave); font-size: .9rem; padding: 0 16px 40px; }
+  .codigo { font: 700 2.2rem/1.2 ui-monospace, "Cascadia Mono", Consolas, monospace; letter-spacing: .12em; text-align: center; margin: 8px 0 4px; color: var(--titulo); }
+  ol { padding-left: 1.2rem; margin: 0 0 .8rem; }
+</style>
+</head>
+<body>
+<header>
+  <div class="marca" aria-hidden="true">
+    <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+  </div>
+  <h1>Te invitaron a una casa</h1>
+  <p>Dónde está</p>
+</header>
+
+<main>
+  <section class="tarjeta" id="con-codigo" hidden>
+    <h2>Tu código de invitación</h2>
+    <div class="codigo" id="codigo"></div>
+    <p class="nota">Sirve una sola vez y vence 24 horas después de que te lo mandaron.</p>
+
+    <div id="en-telefono" hidden>
+      <a class="boton" id="abrir" href="#">Abrir Dónde está</a>
+      <p class="nota">Si no tienes la app, el botón te lleva a Google Play. Después de instalarla, vuelve a tocar el enlace.</p>
+    </div>
+
+    <div id="en-compu">
+      <p>Abre este enlace en tu teléfono Android, o hazlo a mano:</p>
+      <ol>
+        <li>Instala <strong>Dónde está</strong> desde Google Play.</li>
+        <li>Inicia sesión en Configuración → Cuenta y nube.</li>
+        <li>Entra a <strong>Casa y miembros → Unirme a una casa</strong> y escribe el código.</li>
+      </ol>
+    </div>
+    <p class="nota">Tu propio inventario no se mezcla: se queda en tu casa.</p>
+  </section>
+
+  <section class="tarjeta" id="sin-codigo" hidden>
+    <h2>Falta el código</h2>
+    <p>Este enlace no trae un código válido. Pide a quien te invitó que te mande uno nuevo desde «Casa y miembros → Invitar a alguien».</p>
+  </section>
+</main>
+
+<footer>Dónde está · inventario de tu casa</footer>
+
+<script>
+  // Solo lee el código del enlace: esta página no guarda ni manda nada.
+  var PAQUETES = { "": "com.merryporto.inventariohogar", "prueba": "com.merryporto.inventariohogar.prueba" };
+  var datos = new URLSearchParams(location.search);
+  var codigo = (datos.get("c") || "").replace(/[^A-Za-z0-9]/g, "").toUpperCase().slice(0, 6);
+  var paquete = PAQUETES[datos.get("app") || ""];
+  if (codigo.length !== 6 || !paquete) {
+    document.getElementById("sin-codigo").hidden = false;
+  } else {
+    document.getElementById("codigo").textContent = codigo;
+    document.getElementById("con-codigo").hidden = false;
+    if (/Android/i.test(navigator.userAgent)) {
+      var play = "https://play.google.com/store/apps/details?id=" + paquete;
+      document.getElementById("abrir").href = "intent://unirse?c=" + codigo +
+        "#Intent;scheme=dondeesta;package=" + paquete + ";S.browser_fallback_url=" + encodeURIComponent(play) + ";end";
+      document.getElementById("en-telefono").hidden = false;
+      document.getElementById("en-compu").hidden = true;
+    }
+  }
+</script>
+</body>
+</html>
